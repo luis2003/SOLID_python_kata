@@ -37,3 +37,8 @@ order.add_item("USB cable", 2, 5)
 
 print(order.total_price())
 order.pay("debit", "0372846")
+
+
+class PaymentProcessor:
+    def __init__(self, security_code):
+        self.security_code: str = security_code
