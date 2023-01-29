@@ -11,7 +11,7 @@ class PaymentProcessor_TestCase(unittest.TestCase):
         a_processor = PaymentProcessor("0372846")
         an_order = Order()
         a_processor.pay_debit(an_order)
-        self.assertEqual(an_order.status, "paid")
+        self.assertEqual("paid", an_order.status)
 
 
 if __name__ == '__main__':
