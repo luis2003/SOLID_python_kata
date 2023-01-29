@@ -17,18 +17,6 @@ class Order:
             total += self.quantities[i] * self.prices[i]
         return total
 
-    def pay(self, payment_type, security_code):
-        if payment_type == "debit":
-            print("Processing debit payment type")
-            print(f"Verifying security code: {security_code}")
-            self.status = "paid"
-        elif payment_type == "credit":
-            print("Processing credit payment type")
-            print(f"Verifying security code: {security_code}")
-            self.status = "paid"
-        else:
-            raise Exception(f"Unknown payment type: {payment_type}")
-
 
 class PaymentProcessor:
     def __init__(self, security_code):
