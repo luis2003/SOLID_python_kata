@@ -1,8 +1,8 @@
 import unittest
-from single_responsibility import PaymentProcessor, Order
+from payment_system.single_responsibility import PaymentProcessor, Order
 
 
-class PaymentProcessor_TestCase(unittest.TestCase):
+class PaymentProcessorTestCase(unittest.TestCase):
     def test_creation(self):
         a_processor = PaymentProcessor("0372846")
         self.assertIsInstance(a_processor, PaymentProcessor)

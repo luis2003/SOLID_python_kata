@@ -1,5 +1,5 @@
 import unittest
-from single_responsibility import Order
+from payment_system.single_responsibility import Order
 
 
 class OrderTestCase(unittest.TestCase):
