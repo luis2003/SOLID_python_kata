@@ -48,3 +48,8 @@ class PaymentProcessor:
         print(f"Verifying security code: {self.security_code}")
         an_order.status = "paid"
 
+    def pay_credit(self, an_order):
+        print("Processing credit payment type")
+        print(f"Verifying security code: {self.security_code}")
+        an_order.status = "paid"
+
