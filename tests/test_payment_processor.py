@@ -1,5 +1,6 @@
 import unittest
-from payment_system.single_responsibility import PaymentProcessor, Order
+from payment_system.payment_processor import PaymentProcessor
+from payment_system.order import Order
 
 
 class PaymentProcessorTestCase(unittest.TestCase):

@@ -1,4 +1,5 @@
-from payment_system.single_responsibility import Order, PaymentProcessor
+from payment_system.payment_processor import PaymentProcessor
+from payment_system.order import Order
 
 
 def main():
