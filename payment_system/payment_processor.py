@@ -2,15 +2,15 @@ from abc import ABC, abstractmethod
 
 
 class PaymentProcessor(ABC):
-    def __init__(self, security_code):
-        self.security_code: str = security_code
-
     @abstractmethod
     def pay(self, an_order):
         pass
 
 
 class DebitPaymentProcessor(PaymentProcessor):
+    def __init__(self, security_code):
+        self.security_code: str = security_code
+
     def pay(self, an_order):
         print("Processing debit payment type")
         print(f"Verifying security code: {self.security_code}")
@@ -18,6 +18,9 @@ class DebitPaymentProcessor(PaymentProcessor):
 
 
 class CreditPaymentProcessor(PaymentProcessor):
+    def __init__(self, security_code):
+        self.security_code: str = security_code
+
     def pay(self, an_order):
         print("Processing credit payment type")
         print(f"Verifying security code: {self.security_code}")
@@ -25,7 +28,10 @@ class CreditPaymentProcessor(PaymentProcessor):
 
 
 class PayPalPaymentProcessor(PaymentProcessor):
+    def __init__(self, email):
+        self.email: str = email
+
     def pay(self, an_order):
         print("Processing PayPal payment type")
-        print(f"Verifying email: {self.security_code}")
+        print(f"Verifying email: {self.email}")
         an_order.status = "paid"
