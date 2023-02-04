@@ -1,5 +1,5 @@
 import unittest
-from payment_system.payment_processor import DebitPaymentProcessor, CreditPaymentProcessor
+from payment_system.payment_processor import DebitPaymentProcessor, CreditPaymentProcessor, PayPalPaymentProcessor
 from payment_system.order import Order
 
 
@@ -16,6 +16,11 @@ class PaymentProcessorTestCase(unittest.TestCase):
 
     def test_pay_credit(self):
         self.a_credit_processor.pay(self.an_order)
+        self.assertEqual("paid", self.an_order.status)
+
+    def test_pay_paypal(self):
+        a_paypal_proc = PayPalPaymentProcessor("name@mailserver.com")
+        a_paypal_proc.pay(self.an_order)
         self.assertEqual("paid", self.an_order.status)
 
 

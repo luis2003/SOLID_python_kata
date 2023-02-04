@@ -22,3 +22,10 @@ class CreditPaymentProcessor(PaymentProcessor):
         print("Processing credit payment type")
         print(f"Verifying security code: {self.security_code}")
         an_order.status = "paid"
+
+
+class PayPalPaymentProcessor(PaymentProcessor):
+    def pay(self, an_order):
+        print("Processing PayPal payment type")
+        print(f"Verifying email: {self.security_code}")
+        an_order.status = "paid"
