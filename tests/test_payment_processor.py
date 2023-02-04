@@ -8,6 +8,7 @@ class PaymentProcessorTestCase(unittest.TestCase):
     def setUp(self) -> None:
         self.a_debit_processor = DebitPaymentProcessor("0372846")
         self.a_credit_processor = CreditPaymentProcessor("0372846")
+        self.a_paypal_proc = PayPalPaymentProcessor("name@mailserver.com")
         self.an_order = Order()
 
     def test_pay_debit(self):
@@ -19,8 +20,7 @@ class PaymentProcessorTestCase(unittest.TestCase):
         self.assertEqual("paid", self.an_order.status)
 
     def test_pay_paypal(self):
-        a_paypal_proc = PayPalPaymentProcessor("name@mailserver.com")
-        a_paypal_proc.pay(self.an_order)
+        self.a_paypal_proc.pay(self.an_order)
         self.assertEqual("paid", self.an_order.status)
 
 
