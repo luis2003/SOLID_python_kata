@@ -9,6 +9,7 @@ def main():
     order.add_item("USB cable", 2, 5)
     print(order.total_price())
     processor = PayPalPaymentProcessor("name@mailserver.com")
+    processor.auth_sms(12345)
     processor.pay(order)
 
 
