@@ -1,6 +1,6 @@
 import unittest
 from payment_system.payment_processor import DebitPaymentProcessor, CreditPaymentProcessor, \
-    PayPalPaymentProcessor, PaymentProcessorSMS
+    PayPalPaymentProcessor
 from payment_system.order import Order
 from payment_system.sms_authorizer import SMSAuthorizer
 
