@@ -19,6 +19,14 @@ class PaymentProcessorTestCase(unittest.TestCase):
         self.a_paypal_proc.auth_sms(43435)
         self.assertTrue(self.a_paypal_proc.verified)
 
+    def test_debit_except_sms_not_verified(self):
+        with self.assertRaises(Exception):
+            self.a_debit_processor.pay(self.an_order)
+
+    def test_paypal_except_sms_not_verified(self):
+        with self.assertRaisesRegex(Exception, "Not authorized"):
+            self.a_paypal_proc.pay(self.an_order)
+
     def test_pay_debit(self):
         self.a_debit_processor.pay(self.an_order)
         self.assertEqual("paid", self.an_order.status)
