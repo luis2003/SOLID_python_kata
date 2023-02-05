@@ -1,9 +1,10 @@
 class SMSAuthorizer:
     def __init__(self):
-        self.authorized = None
+        self.authorized = False
 
-    def verify_code(self, param):
-        pass
+    def verify_code(self, code):
+        print(f"SMSAuthorizer is verifying SMS code: {code}")
+        self.authorized = True
 
-    def is_authorized(self):
-        pass
+    def is_authorized(self) -> bool:
+        return self.authorized
