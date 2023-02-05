@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from payment_system.sms_authorizer import SMSAuthorizer
 
 
 class PaymentProcessor(ABC):
@@ -18,12 +19,12 @@ class PaymentProcessorSMS(PaymentProcessor):
 
 
 class DebitPaymentProcessor(PaymentProcessorSMS):
-    def __init__(self, security_code):
+    def __init__(self, security_code, authorizer: SMSAuthorizer):
         self.security_code: str = security_code
-        self.verified = False
+        self._authorizer = authorizer
 
     def pay(self, an_order):
-        if not self.verified:
+        if not self._authorizer.is_authorized():
             raise Exception("Not authorized")
         print("Processing debit payment type")
         print(f"Verifying security code: {self.security_code}")
