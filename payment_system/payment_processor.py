@@ -3,6 +3,12 @@ from abc import ABC, abstractmethod
 
 class PaymentProcessor(ABC):
     @abstractmethod
+    def pay(self, an_order):
+        pass
+
+
+class PaymentProcessorSMS(PaymentProcessor):
+    @abstractmethod
     def auth_sms(self, code):
         pass
 
@@ -11,7 +17,7 @@ class PaymentProcessor(ABC):
         pass
 
 
-class DebitPaymentProcessor(PaymentProcessor):
+class DebitPaymentProcessor(PaymentProcessorSMS):
     def __init__(self, security_code):
         self.security_code: str = security_code
         self.verified = False
@@ -37,11 +43,8 @@ class CreditPaymentProcessor(PaymentProcessor):
         print(f"Verifying security code: {self.security_code}")
         an_order.status = "paid"
 
-    def auth_sms(self, param):
-        pass
 
-
-class PayPalPaymentProcessor(PaymentProcessor):
+class PayPalPaymentProcessor(PaymentProcessorSMS):
     def __init__(self, email):
         self.verified = False
         self.email: str = email
@@ -56,4 +59,3 @@ class PayPalPaymentProcessor(PaymentProcessor):
     def auth_sms(self, code):
         print(f"Verifying SMS code: {code}")
         self.verified = True
-

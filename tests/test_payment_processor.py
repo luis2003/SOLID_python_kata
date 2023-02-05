@@ -1,5 +1,6 @@
 import unittest
-from payment_system.payment_processor import DebitPaymentProcessor, CreditPaymentProcessor, PayPalPaymentProcessor
+from payment_system.payment_processor import DebitPaymentProcessor, CreditPaymentProcessor, \
+    PayPalPaymentProcessor, PaymentProcessorSMS
 from payment_system.order import Order
 
 
@@ -10,6 +11,11 @@ class PaymentProcessorTestCase(unittest.TestCase):
         self.a_credit_processor = CreditPaymentProcessor("0372846")
         self.a_paypal_proc = PayPalPaymentProcessor("name@mailserver.com")
         self.an_order = Order()
+
+    def test_debit_and_paypal_are_smsprocessors(self):
+        self.assertIsInstance(self.a_debit_processor, PaymentProcessorSMS)
+        self.assertIsInstance(self.a_paypal_proc, PaymentProcessorSMS)
+
 
     def test_debit_auth_sms(self):
         self.a_debit_processor.auth_sms("a_valid_code")
