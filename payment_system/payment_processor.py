@@ -17,6 +17,8 @@ class DebitPaymentProcessor(PaymentProcessor):
         self.verified = False
 
     def pay(self, an_order):
+        if not self.verified:
+            raise Exception("Not authorized")
         print("Processing debit payment type")
         print(f"Verifying security code: {self.security_code}")
         an_order.status = "paid"
@@ -45,6 +47,8 @@ class PayPalPaymentProcessor(PaymentProcessor):
         self.email: str = email
 
     def pay(self, an_order):
+        if not self.verified:
+            raise Exception("Not authorized")
         print("Processing PayPal payment type")
         print(f"Verifying email: {self.email}")
         an_order.status = "paid"
