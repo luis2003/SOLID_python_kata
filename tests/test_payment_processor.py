@@ -28,6 +28,7 @@ class PaymentProcessorTestCase(unittest.TestCase):
             self.a_paypal_proc.pay(self.an_order)
 
     def test_pay_debit(self):
+        self.a_debit_processor.auth_sms(12345)
         self.a_debit_processor.pay(self.an_order)
         self.assertEqual("paid", self.an_order.status)
 
@@ -36,6 +37,7 @@ class PaymentProcessorTestCase(unittest.TestCase):
         self.assertEqual("paid", self.an_order.status)
 
     def test_pay_paypal(self):
+        self.a_paypal_proc.auth_sms(12345)
         self.a_paypal_proc.pay(self.an_order)
         self.assertEqual("paid", self.an_order.status)
 
