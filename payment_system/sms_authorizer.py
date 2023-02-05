@@ -1,4 +1,13 @@
-class SMSAuthorizer:
+from abc import ABC, abstractmethod
+
+
+class Authorizer(ABC):
+    @abstractmethod
+    def is_authorized(self) -> bool:
+        pass
+
+
+class SMSAuthorizer(Authorizer):
     def __init__(self):
         self.authorized = False
 

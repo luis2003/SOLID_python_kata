@@ -1,11 +1,14 @@
 import unittest
-from payment_system.sms_authorizer import SMSAuthorizer
+from payment_system.sms_authorizer import SMSAuthorizer, Authorizer
 
 
 class SMSAuthorizerTestCase(unittest.TestCase):
     def setUp(self):
         self.an_sms_auth = SMSAuthorizer()
         self.assertIsInstance(self.an_sms_auth, SMSAuthorizer)
+
+    def test_uses_base_class(self):
+        self.assertIsInstance(self.an_sms_auth, Authorizer)
 
     def test_verify_code(self):
         self.an_sms_auth.verify_code(123456)
