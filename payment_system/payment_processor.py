@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from payment_system.sms_authorizer import SMSAuthorizer
+from payment_system.sms_authorizer import Authorizer
 
 
 class PaymentProcessor(ABC):
@@ -9,7 +9,7 @@ class PaymentProcessor(ABC):
 
 
 class DebitPaymentProcessor(PaymentProcessor):
-    def __init__(self, security_code, authorizer: SMSAuthorizer):
+    def __init__(self, security_code, authorizer: Authorizer):
         self.security_code: str = security_code
         self._authorizer = authorizer
 
@@ -32,7 +32,7 @@ class CreditPaymentProcessor(PaymentProcessor):
 
 
 class PayPalPaymentProcessor(PaymentProcessor):
-    def __init__(self, email, authorizer: SMSAuthorizer):
+    def __init__(self, email, authorizer: Authorizer):
         self._authorizer = authorizer
         self.email: str = email
 
