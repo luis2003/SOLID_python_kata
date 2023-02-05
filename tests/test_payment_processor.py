@@ -11,6 +11,10 @@ class PaymentProcessorTestCase(unittest.TestCase):
         self.a_paypal_proc = PayPalPaymentProcessor("name@mailserver.com")
         self.an_order = Order()
 
+    def test_auth_sms(self):
+        self.a_debit_processor.auth_sms("a_valid_code")
+        self.assertTrue(self.a_debit_processor.verified)
+
     def test_pay_debit(self):
         self.a_debit_processor.pay(self.an_order)
         self.assertEqual("paid", self.an_order.status)
