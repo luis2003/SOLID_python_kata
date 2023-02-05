@@ -46,12 +46,12 @@ class CreditPaymentProcessor(PaymentProcessor):
 
 
 class PayPalPaymentProcessor(PaymentProcessorSMS):
-    def __init__(self, email):
-        self.verified = False
+    def __init__(self, email, authorizer: SMSAuthorizer):
+        self._authorizer = authorizer
         self.email: str = email
 
     def pay(self, an_order):
-        if not self.verified:
+        if not self._authorizer.is_authorized():
             raise Exception("Not authorized")
         print("Processing PayPal payment type")
         print(f"Verifying email: {self.email}")
