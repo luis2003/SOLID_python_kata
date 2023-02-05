@@ -1,5 +1,5 @@
 import unittest
-from payment_system.sms_authorizer import SMSAuthorizer, Authorizer
+from payment_system.authorizers import SMSAuthorizer, Authorizer
 
 
 class SMSAuthorizerTestCase(unittest.TestCase):

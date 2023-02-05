@@ -2,7 +2,7 @@ import unittest
 from payment_system.payment_processor import DebitPaymentProcessor, CreditPaymentProcessor, \
     PayPalPaymentProcessor
 from payment_system.order import Order
-from payment_system.sms_authorizer import SMSAuthorizer
+from payment_system.authorizers import SMSAuthorizer
 
 
 class PaymentProcessorTestCase(unittest.TestCase):

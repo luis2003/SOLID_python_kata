@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from payment_system.sms_authorizer import Authorizer
+from payment_system.authorizers import Authorizer
 
 
 class PaymentProcessor(ABC):

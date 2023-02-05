@@ -1,4 +1,4 @@
-from payment_system.sms_authorizer import SMSAuthorizer
+from payment_system.authorizers import SMSAuthorizer
 from payment_system.payment_processor import PayPalPaymentProcessor
 from payment_system.order import Order
 
