@@ -1,8 +1,12 @@
 import unittest
+from payment_system.sms_authorizer import SMSAuthorizer
 
-class MyTestCase(unittest.TestCase):
-    def test_something(self):
-        self.assertEqual(True, False)  # add assertion here
+
+class SMSAuthorizerTestCase(unittest.TestCase):
+    def test_creation(self):
+        an_sms_auth = SMSAuthorizer()
+        self.assertIsInstance(an_sms_auth, SMSAuthorizer)
+
 
 if __name__ == '__main__':
     unittest.main()
