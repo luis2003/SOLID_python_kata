@@ -41,7 +41,7 @@ class CreditPaymentProcessor(PaymentProcessor):
 
 class PayPalPaymentProcessor(PaymentProcessor):
     def __init__(self, email):
-        self.verified = None
+        self.verified = False
         self.email: str = email
 
     def pay(self, an_order):
@@ -49,5 +49,7 @@ class PayPalPaymentProcessor(PaymentProcessor):
         print(f"Verifying email: {self.email}")
         an_order.status = "paid"
 
-    def auth_sms(self, param):
-        pass
+    def auth_sms(self, code):
+        print(f"Verifying SMS code: {code}")
+        self.verified = True
+
