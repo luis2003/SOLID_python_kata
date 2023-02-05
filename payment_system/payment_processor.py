@@ -41,6 +41,7 @@ class CreditPaymentProcessor(PaymentProcessor):
 
 class PayPalPaymentProcessor(PaymentProcessor):
     def __init__(self, email):
+        self.verified = None
         self.email: str = email
 
     def pay(self, an_order):
