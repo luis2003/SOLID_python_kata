@@ -2,24 +2,20 @@ import unittest
 from payment_system.payment_processor import DebitPaymentProcessor, CreditPaymentProcessor, \
     PayPalPaymentProcessor, PaymentProcessorSMS
 from payment_system.order import Order
+from payment_system.sms_authorizer import SMSAuthorizer
 
 
 class PaymentProcessorTestCase(unittest.TestCase):
 
     def setUp(self) -> None:
-        self.a_debit_processor = DebitPaymentProcessor("0372846")
+        self.an_sms_auth = SMSAuthorizer()
+        self.a_debit_processor = DebitPaymentProcessor("0372846", self.an_sms_auth)
         self.a_credit_processor = CreditPaymentProcessor("0372846")
         self.a_paypal_proc = PayPalPaymentProcessor("name@mailserver.com")
         self.an_order = Order()
 
     def test_debit_and_paypal_are_smsprocessors(self):
-        self.assertIsInstance(self.a_debit_processor, PaymentProcessorSMS)
         self.assertIsInstance(self.a_paypal_proc, PaymentProcessorSMS)
-
-
-    def test_debit_auth_sms(self):
-        self.a_debit_processor.auth_sms("a_valid_code")
-        self.assertTrue(self.a_debit_processor.verified)
 
     def test_paypal_auth_sms(self):
         self.a_paypal_proc.auth_sms(43435)
@@ -34,7 +30,8 @@ class PaymentProcessorTestCase(unittest.TestCase):
             self.a_paypal_proc.pay(self.an_order)
 
     def test_pay_debit(self):
-        self.a_debit_processor.auth_sms(12345)
+        # self.a_debit_processor.auth_sms(12345)
+        self.an_sms_auth.verify_code(123456)
         self.a_debit_processor.pay(self.an_order)
         self.assertEqual("paid", self.an_order.status)
 
