@@ -17,3 +17,15 @@ class SMSAuthorizer(Authorizer):
 
     def is_authorized(self) -> bool:
         return self.authorized
+
+
+class NotARobotAuth(Authorizer):
+    def __init__(self):
+        self.authorized = False
+
+    def not_a_robot(self):
+        print(f"NotARobotAuth is checking you are not a robot...")
+        self.authorized = True
+
+    def is_authorized(self) -> bool:
+        return self.authorized
